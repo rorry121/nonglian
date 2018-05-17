@@ -1,0 +1,136 @@
+page-chunyou {
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+  ion-col {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  .top1 {
+    width: 100%;
+    height: auto;
+  }
+  .topbar {
+    width: 100%;
+    //background-color: #ffffff;
+    color: #333333;
+    height: 42px;
+  }
+  .topbar > ion-row > ion-col > span {
+    display: inline-block;
+    margin-top: 10%;
+  }
+  .topbar > ion-row > ion-col {
+    margin-top: 5px;
+  }
+
+  .search {
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px rgba(0,0,0,0.5) solid;
+  }
+  .search > ion-row >ion-col {
+    padding: 0;
+    text-align: left;
+    line-height: 30px;
+  }
+
+
+
+  .search > img {
+    display: block;
+    float: right;
+  }
+
+  .swiper-slide >img {
+    display: block;
+    width: 100%;
+    height: 200px;
+  }
+  .line1 {
+    width: 90%;
+    height: auto;
+    margin: 4% auto 0 auto;
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+  }
+  .four-cards {
+    clear: both;
+    display: block;
+    margin-top:15px;
+  }
+  .four-cards > ion-row > ion-col {
+    height: auto;
+    width: auto;
+    text-align: center;
+  }
+  .four-cards > ion-row > ion-col > span {
+    display: block;
+    height: 48px;
+    width: 48px;
+    margin: 10px auto;
+
+  }
+  .four-cards > ion-row > ion-col > h6 {
+    font-size: 9pt;
+    color: #333333;
+  }
+
+  .card1 > img {
+    width: 28px;
+    height: 28px;
+    display: block;
+    margin: 9px auto 0 auto;
+    border-radius: 5%;
+  }
+
+
+  .tubiao {
+    width: 50px;
+    height: 50px;
+    border: 1px transparent solid;
+    border-radius: 50px;
+  }
+  .recommend {
+    width: 100%;
+    height: auto;
+    margin: 4% 0 0 0;
+  }
+  .recommend > img:first-child {
+    display: inline-block;
+    margin: 5px 5px 0 0;
+  }
+  .recommend > img:last-child {
+    display: inline-block;
+    margin: 5px 0 0 5px;
+  }
+  .recommendGoods {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-title {
+    color: #333333;
+    font-size: 11pt;
+  }
+  .recommend {
+    width: 100%;
+    height: auto;
+    margin: 4% 0 0 0;
+    font-size: 12pt;
+    color: #333333;
+  }
+  .recommend > img:first-child {
+    display: inline-block;
+    margin: 5px 5px 0 0;
+  }
+  .recommend > img:last-child {
+    display: inline-block;
+    margin: 5px 0 0 5px;
+  }
+  img-lazy-load >img{
+    height: 110px;
+    width: 100%;
+  }
+}

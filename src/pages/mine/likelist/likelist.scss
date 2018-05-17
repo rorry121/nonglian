@@ -1,0 +1,30 @@
+page-likelist{
+  .goods-price{
+    color: #F15A4A;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 15px;
+    padding:6px 5px 3px 3px;
+  }
+  .goods-description{
+    color: #888888;
+    font-family: "微软雅黑 Light";
+    font-size: 11px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    padding: 3px 0 0 5px;
+  }
+  .goods-title{
+    margin-top: 5px;
+    color: #333333;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 15px;
+  }
+  img{
+    width: 100%;
+    height: 140px;
+    margin: auto;
+    text-align: center;
+  }
+}

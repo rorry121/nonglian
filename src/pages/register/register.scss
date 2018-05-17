@@ -1,0 +1,52 @@
+page-register {
+  .back > img {
+    float: left;
+    margin-left: 0;
+  }
+  .login1 {
+    text-align: center;
+  }
+  .login1 > p {
+    font-size: large;
+    color: deepskyblue;
+  }
+  .login1 > div > p {
+    width: 95%;
+    height: 40px;
+    margin: 20px auto;
+    border: 1px lightgray solid;
+    background-color: #F5F5F5;
+    opacity: 1;
+    position: relative;
+    border-radius: 5px;
+    -webkit-transition: 180ms ease;
+    -moz-transition: 180ms ease;
+    -o-transition: 180ms ease;
+    transition: 180ms ease;
+  }
+  .login1 > div > p:hover {
+    border: 1px green solid;
+  }
+  .login1 > div > p > input {
+    height: 38px;
+    width: 80%;
+    background-color: #F5F5F5;
+    outline: none;
+    border: 0;
+  }
+  .login1 > span {
+    display: block;
+    margin-top: 20px;
+    opacity: 0.5;
+    font-size: 11pt;
+  }
+  .login1 > div > button {
+    width: 95%;
+    margin: 0 auto;
+    height: 40px;
+  }
+  .alert-danger{
+    font-size: 10px;
+    color: #f53d3d;
+  }
+}

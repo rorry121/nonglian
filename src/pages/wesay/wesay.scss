@@ -1,0 +1,104 @@
+page-wesay {
+  .following{
+    font-size: 13px;
+    border-radius: 8px;
+    background-color: #018026;
+    width: 40px;
+    height: 25px;
+    line-height: 25px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .banner{
+    height: 30px;
+    width: auto;
+    text-align: center;
+    font-weight: 200;
+    font-family: "Adobe 宋体 Std L";
+  }
+  .change{
+    color:green;
+    border-bottom: 2px solid green;
+  }
+
+
+  .card-md {
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(147, 147, 147, 0.2);
+  }
+  .card-ios {
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+    border-radius: 1px;
+    font-size: 1.4rem;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(147, 147, 147, 0.2);
+  }
+  .picture{
+    width: 100%;
+    height: 180px;
+  }
+  .ws-touxiang{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+  }
+  .ws-time{
+    color: #A4A9B0;
+    font-family: "微软雅黑 Light";
+    font-size: 10px;
+  }
+  .ws-name{
+    color: #333333;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 13px;
+  }
+  .col {
+    position: relative;
+    padding: 1px 2px 2px 5px;
+  }
+  .ws-description{
+    background-color: #F2F2F2;
+    color: #333333;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 13px;
+    padding: 5px 10px 5px 10px;
+  }
+  .ws-footer{
+    height: 35px;
+    line-height: 35px;
+  }
+  .ws-footericon:hover{
+    color: rgba(128, 167, 48, 1);
+  }
+  .ws-footericon{
+    font-size: 18px;
+    text-align: center;
+  }
+  .ws-laba{
+    font-size: 18px;
+    padding-right: 10px;
+  }
+  .ws-top{
+    font-size: 18px;
+    font-family: "微软雅黑 Light";
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    padding-bottom: 50px;
+    font-weight: 700;
+    color: #333333;
+  }
+  .tubiaotoubu1{
+    padding: 10px 10px 0px 0px;
+    font-size: 24px;
+    font-weight: 200;
+    line-height: 24px;
+    color: rgba(147, 147, 147, 1);
+  }
+}

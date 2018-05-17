@@ -1,0 +1,135 @@
+<!--
+  Generated template for the ChunyouPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <div class="top1">
+      <div class="topbar">
+        <ion-row>
+          <ion-col col-auto  (click)="getLocation()" no-padding>
+            <ion-row>
+              <span id="district">火星</span>
+              <span> ∨</span>
+            </ion-row>
+          </ion-col>
+          <ion-col no-padding>
+            <div class="search">
+              <ion-row>
+                <ion-col col-11><span>{{scanText}}</span></ion-col>
+
+                <ion-col col-1><img src="assets/img/voice.png"></ion-col>
+              </ion-row>
+            </div>
+          </ion-col >
+          <ion-col col-2 (click)="gotoScan()" no-padding>
+            <div><img src="assets/img/erwei.png"></div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="swiper-container" style="height:auto">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://www.rorry.cn/pic/banner1.png">
+      </div>
+      <div class="swiper-slide">
+        <img src="https://www.rorry.cn/pic/banner2.png">
+      </div>
+      <!--<div class="swiper-slide">-->
+        <!--<img-lazy-load src="https://www.rorry.cn/pic/banner3.png" type="1"></img-lazy-load>-->
+      <!--</div>-->
+      <!--<div class="swiper-slide">-->
+        <!--<img-lazy-load src="https://www.rorry.cn/pic/banner4.png" type="1"></img-lazy-load>-->
+      <!--</div>-->
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="four-cards">
+  <ion-row>
+  <ion-col>
+  <img src="assets/img/fujin.png" class="tubiao" (click)="gotofujin()">
+ <h6>附近</h6>
+  </ion-col>
+    <ion-col>
+      <img src="assets/img/tuijian.png" class="tubiao" (click)="gototuijian()">
+        <h6>推荐</h6>
+    </ion-col>
+  <ion-col >
+  <img src="assets/img/nongchan.png" class="tubiao" (click)="gotoGoodslist()" >
+  <h6>特产</h6>
+  </ion-col>
+  <ion-col>
+  <img src="assets/img/more.png" class="tubiao" (click)="gotomore()">
+  <h6>更多</h6>
+  </ion-col>
+  </ion-row>
+  </div>
+
+  <div class="recommend">
+  <ion-row>
+  <ion-col text-center style="font-size: 0.9em">
+    <div>
+      热门目的地 <ion-icon name="ios-arrow-forward-outline" icon-right></ion-icon>
+    </div>
+  </ion-col>
+  </ion-row>
+
+  </div>
+  <ion-list>
+    <ion-row>
+      <ion-col *ngFor="let item of dataList" col-6 (click)="gotoDetails(item.objectId)">
+        <img-lazy-load src="{{item.image?.url}}" type="1"></img-lazy-load>
+        <ion-row>
+          <ion-col text-center style="color: #333333">
+            {{item.title}}
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <!--<ion-col>-->
+  <!--<div class="tuijianImg">-->
+    <!--<img-lazy-load src="http://www.rorry.cn/pic/souye/tuijian2.jpg" type="1"></img-lazy-load>-->
+  <!--<div class="card-title">百姓烧烤</div>-->
+  <!--</div>-->
+  <!--</ion-col>-->
+  <!--</ion-row>-->
+
+  <!--<ion-row>-->
+  <!--<ion-col>-->
+  <!--<div class="tuijianImg">-->
+    <!--<img-lazy-load src="http://www.rorry.cn/pic/souye/tuijian3.jpg" type="1"></img-lazy-load>-->
+  <!--<div class="card-title">吊脚楼</div>-->
+  <!--</div>-->
+  <!--</ion-col>-->
+  <!--<ion-col>-->
+  <!--<div class="tuijianImg">-->
+    <!--<img-lazy-load src="http://www.rorry.cn/pic/souye/tuijian4.jpg" type="1"></img-lazy-load>-->
+  <!--<div class="card-title">湖光山色</div>-->
+  <!--</div>-->
+  <!--</ion-col>-->
+  <!--</ion-row>-->
+  <!--<ion-list>-->
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+
+      <!--</ion-col>-->
+      <!--<ion-col></ion-col>-->
+      <!--<ion-col></ion-col>-->
+      <!--<ion-col></ion-col>-->
+    <!--</ion-row>-->
+  <!--</ion-list>-->
+</ion-content>

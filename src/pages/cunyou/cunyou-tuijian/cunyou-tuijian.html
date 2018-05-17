@@ -1,0 +1,28 @@
+<!--
+  Generated template for the CunyouTuijianPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>推荐</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list *ngFor="let item of dataList" style="margin: 0 0 10px 0" (click)="gotoDetails(item.objectId)">
+    <img-lazy-load src="{{item.image?.url}}" type="1"></img-lazy-load>
+    <ion-row>
+      <ion-col col-auto style="color: #333333;padding: 0 5px">{{item.title}}</ion-col>
+      <ion-col class="goods-price" text-right>{{item.price|number:'1.2-2'}}/起</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-auto style="font-size: 0.6em;color: #555555;padding: 0 5px">{{item.district}} | {{getDistance(item)|number:'1.1-1'}} km</ion-col>
+      <ion-col style="font-size: 0.7em;color: #f12c12;margin-right:10px" text-right><ion-icon name="ios-bonfire" icon-left></ion-icon>推荐指数：{{item.readNum}}</ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

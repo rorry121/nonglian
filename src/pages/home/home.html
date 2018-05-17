@@ -1,0 +1,117 @@
+<ion-content>
+  <div class="top1">
+    <div class="topbar">
+      <ion-row>
+
+        <ion-col col-2>
+          <span>重庆 ∨</span>
+        </ion-col>
+        <ion-col col-8>
+          <div class="search">
+            <ion-row>
+              <ion-col col-11 (click)="gotoSearchPage()"><span>{{scanText}}</span></ion-col>
+
+              <ion-col col-1><img src="assets/img/voice.png"></ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+        <ion-col col-2 (click)="gotoScan()">
+          <div><img src="assets/img/erwei.png"></div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+    <!--<div class="swiper-container">-->
+      <!--<div class="swiper-wrapper">-->
+        <!--<div class="swiper-slide">-->
+          <!--<img src="{{'http://www.rorry.cn/pic/banner1.png'|| 'assets/img/logo.png'}}">-->
+        <!--</div>-->
+        <!--<div class="swiper-slide">-->
+          <!--<img src="{{'http://www.rorry.cn/pic/banner2.png'|| 'assets/img/logo.png'}}">-->
+        <!--</div>-->
+        <!--<div class="swiper-slide">-->
+          <!--<img src="{{'http://www.rorry.cn/pic/banner3.png'|| 'assets/img/logo.png'}}">-->
+        <!--</div>-->
+        <!--<div class="swiper-slide">-->
+          <!--<img src="{{'http://www.rorry.cn/pic/banner4.png'|| 'assets/img/logo.png'}}">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash; 如果需要分页器 &ndash;&gt;-->
+      <!--<div class="swiper-pagination"></div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="four-cards">-->
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+                <!--<span class="card1" (click)="gotocanteen()">-->
+                    <!--<img src="assets/img/restaurant.png">-->
+
+                <!--</span><h6>乡愁餐厅</h6>-->
+      <!--</ion-col>-->
+      <!--<ion-col >-->
+                <!--<span class="card2" (click)="gotoGoodslist()">-->
+                    <!--<img src="assets/img/banana.png">-->
+
+                <!--</span><h6>农产品</h6>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+                <!--<span class="card3" (click)="gototravel()">-->
+                    <!--<img src="assets/img/vallage.png">-->
+
+                <!--</span><h6>村游</h6>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+                <!--<span class="card4">-->
+                    <!--<img src="assets/img/more.png">-->
+
+                <!--</span><h6>更多</h6>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  <!--</div>-->
+
+  <!--<div class="recommend">-->
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+        <!--<img src="assets/img/recommend.png">-->
+        <!--<span>猜你喜欢</span>-->
+        <!--<img src="assets/img/recommend.png">-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+
+  <!--</div>-->
+
+
+
+  <!--<div class="tuijian1">-->
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+        <!--<div>-->
+          <!--<img src="{{'http://www.rorry.cn/pic/souye/tuijian1.jpg'|| 'assets/img/logo.png'}}">-->
+          <!--<div class="card-title">乡村里</div>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+        <!--<div>-->
+          <!--<img src="{{'http://www.rorry.cn/pic/souye/tuijian2.jpg'|| 'assets/img/logo.png'}}">-->
+          <!--<div class="card-title">百姓烧烤</div>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+
+    <!--<ion-row>-->
+      <!--<ion-col>-->
+        <!--<div>-->
+          <!--<img src="{{'http://www.rorry.cn/pic/souye/tuijian3.jpg'|| 'assets/img/logo.png'}}">-->
+          <!--<div class="card-title">吊脚楼</div>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+      <!--<ion-col>-->
+        <!--<div>-->
+          <!--<img src="{{'http://www.rorry.cn/pic/souye/tuijian4.jpg'|| 'assets/img/logo.png'}}">-->
+          <!--<div class="card-title">湖光山色</div>-->
+        <!--</div>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+  <!--</div>-->
+    <iframe *ngIf="scanText" id="iframe_a" [src]="scanText"  width="100%" height="100%" noborder="true"></iframe>
+</ion-content>

@@ -1,0 +1,53 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  <ion-row>
+    <ion-col class="back">
+      <img src="assets/img/back.png" (click)="backto()">
+    </ion-col>
+  </ion-row>
+  <form class="login1" [formGroup]="formModule" (submit)="onSubmit()">
+    <p>欢迎登录农链</p>
+    <div formGroupName="data">
+      <p>
+        <input type="text" placeholder="用户名" formControlName="username">
+        <ion-icon name="ios-arrow-dropdown-outline"></ion-icon>
+      </p>
+      <p>
+        <input type="{{aaa ? text1 : password1}}" placeholder="密码" formControlName="password">
+        <ion-icon (click)="view1()" name="{{aaa ? eye1 : eyeoff1}}"></ion-icon>
+      </p>
+    </div>
+    <div>
+      <button type="submit" ion-button outline>登录</button>
+    </div>
+    <span (click)="forgetPassword()">忘记密码？</span>
+    <span (click)="gotoRegister()">注册</span>
+  </form>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <span (click)="open1()">使用第三方登录</span>
+      </ion-col>
+    </ion-row>
+    <div *ngIf="open2">
+      <ion-row>
+        <ion-col>
+          <div><a><img src="assets/img/QQ.png"></a></div>
+        </ion-col>
+        <ion-col>
+          <div><a><img src="assets/img/weibo.png"></a></div>
+        </ion-col>
+        <ion-col>
+          <div><a><img src="assets/img/wechat.png"></a></div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+
+</ion-content>

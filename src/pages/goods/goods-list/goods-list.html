@@ -1,0 +1,80 @@
+<!--
+  Generated template for the GoodsList page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-row>
+    <ion-col col-10 push-1>
+      <ion-searchbar
+        [(ngModel)]="myInput"
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput($event,myInput)"
+        (ionCancel)="onCancel($event)"
+        placeholder="搜索商品"
+      >
+      </ion-searchbar>
+    </ion-col>
+    <ion-col col-1 push-1 (click)="goToCart()">
+      <ion-icon name="ios-cart-outline" class="tubiaotoubu1"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="xuanxiang1">
+    <ion-col col-3 (click)="jiazaibytime()" class="xuanxiang">上新<ion-icon name="ios-basket-outline"></ion-icon></ion-col>
+    <ion-col col-3 (click)="jiazaibyprice()" class="xuanxiang">价格
+      <ion-row class="updown">
+        <ion-col col-8></ion-col>
+        <ion-col col-1>
+          <ion-icon name="ios-arrow-up-outline" [ngClass]="{'getgreen':upprice===true}" ></ion-icon>
+          <ion-icon name="ios-arrow-down-outline" [ngClass]="{'getgreen':upprice===false}"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+
+    <ion-col col-3 (click)="jiazaibysales()" class="xuanxiang">销量
+      <ion-row class="updown">
+        <ion-col col-8></ion-col>
+        <ion-col col-1>
+          <ion-icon name="ios-arrow-up-outline" [ngClass]="{'getgreen':upsales===true}"></ion-icon>
+          <ion-icon name="ios-arrow-down-outline" [ngClass]="{'getgreen':upsales===false}"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col col-3 (click)="jiazaibytime()" class="xuanxiang2">筛选<ion-icon name="ios-funnel-outline"></ion-icon></ion-col>
+  </ion-row>
+</ion-header>
+<ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card  *ngFor="let item of goods"  >
+    <!--<div *ngFor="let item of goods">-->
+    <div (click)="gotoGoodsdetailPage(item)" [ngStyle]="{'width': '100%'}">
+      <ion-row >
+        <ion-col  col-5>
+          <!--<img img-lazy-load [src]="item.image?.url" width="100%" >-->
+          <img-lazy-load [src]="item.image?.url"></img-lazy-load>
+        </ion-col>
+        <ion-col  col-7>
+          <p class="goods-title">{{item.title}}</p>
+          <br>
+          <p class="goods-description">{{item.description}}</p>
+          <p class="goods-price"><ion-icon name="logo-yen" [ngStyle]="{'font-size': '10px'}"></ion-icon>{{item.price|number: '1.2-2'}}</p>
+          <ion-row >
+            <ion-col col-10 class="goods-sales">
+              {{item.sales}}人已购买 | <ion-icon name="pin"></ion-icon> {{item.hometown}}
+            </ion-col>
+            <ion-col col-2>
+              <ion-icon name="{{include(item.objectId)?'ios-heart':'ios-heart-outline'}}" class="goods-heart" (click)="addLikeGoods($event,item.objectId)"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,121 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      我的
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page" no-padding>
+
+
+  <!--头像+背景部分-->
+  <ion-card-content no-padding >
+    <ion-row float-end style="font-size: 18px">
+      <ion-col>
+        <ion-icon name="ios-settings-outline" item-end></ion-icon>
+      </ion-col>
+      <ion-col style="margin-left: 10px">
+        <ion-icon name="ios-text-outline" item-end></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-item>
+      <ion-thumbnail item-left (click)="showImg(userInfo.touxiang.url)">
+        <img class="touxiang" src="{{userInfo?.touxiang?.url||'assets/img/default.jpg'}}">
+      </ion-thumbnail>
+      <!--昵称+个性签名-->
+      <h2>{{userInfo?.username|| ''}}</h2>
+      <p>Hayao Miyazaki • 1988</p>
+      <!--查看个人详细资料-->
+      <button ion-button [hidden]="isLogined" (click)="gotologin()" clear item-left>登录</button>
+      <button ion-button [hidden]="!isLogined" (click)="logout()" clear item-left>注销</button>
+    </ion-item>
+    <!--关注+赞+收藏-->
+      <ion-row no-padding>
+        <ion-col *ngFor="let fl of myFisrtList"
+                 (click)="otherPage(fl.component)"
+                 style="text-align: center">
+          <div text-center>
+            <div *ngIf="!fl.name">
+              <p text-center  style="margin:3px 0;font-size: 0.9em">
+                {{fl.num}}
+              </p>
+              <p style="color: #333333;font-size: 0.9em;margin:10px 0 3px 0;">
+                {{fl.title}}
+              </p>
+            </div>
+            <div *ngIf="fl.name">
+              <p text-center style="margin:3px 0;font-size: 0.9em">
+                <ion-icon name="{{fl.name}}"></ion-icon>
+              </p>
+              <p style="font-size: 0.9em;color: #333333;margin:10px 0 3px 0;">
+                {{fl.title}}
+              </p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    <div style="border:5px solid #EEEEEE;"></div>
+  </ion-card-content>
+<ion-item no-padding>
+  <ion-label no-margin>
+  <ion-row>
+      <ion-col text-left style="color:#222222;font-size: 0.9em;left: 10px" >我的订单</ion-col>
+      <ion-col text-right text-center style="font-size: 0.8em;color: #777777;">查看全部订单<ion-icon name="ios-arrow-dropright" icon-right></ion-icon></ion-col>
+  </ion-row>
+  </ion-label>
+</ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let ol of myOrderList"
+               (click)="otherPage(ol.component)"
+               style="text-align: center" align-self-center>
+        <ion-row>
+          <img src="{{ol.name}}"style="height: 25px;width:25px;margin:auto" >
+        </ion-row>
+        <ion-row justify-content-center style="color: #333333;margin-top: 10px;font-size: 0.8em">
+          {{ol.title}}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div style="border:5px solid #eeeeee;"></div>
+  <ion-item no-padding>
+    <ion-label no-margin>
+      <ion-row>
+        <ion-col text-left style="color:#222222;font-size: 0.9em;left: 10px" >我的空间</ion-col>
+      </ion-row>
+    </ion-label>
+  </ion-item>
+    <ion-row>
+      <ion-col *ngFor="let sl of mySpaceList"
+               (click)="otherPage(sl.component)"
+               style="text-align: center">
+        <div text-center>
+            <p text-center  style="margin:8px 0;color: #F4333C">
+              {{sl.num}}
+            </p>
+            <p style="color:#333333;font-size: 0.8em;">
+              {{sl.title}}
+            </p>
+        </div>
+      </ion-col>
+    </ion-row>
+  <div style="border:5px solid #eeeeee;"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let hl of myHtmlList"
+               (click)="otherPage(hl.component)"
+               style="text-align: center;margin-bottom: 10px" align-self-center col-3>
+        <ion-row>
+          <img src="{{hl.name}}"style="height: 30px;width:30px;margin:auto" >
+        </ion-row>
+        <ion-row justify-content-center style="color: #333333;margin-top: 10px;font-size: 0.8em">
+          {{hl.title}}
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div style="border:5px solid #EEEEEE;"></div>
+</ion-content>

@@ -1,0 +1,84 @@
+page-goods-details {
+  .zhutu{
+    width: 100%;
+    height: auto;
+  }
+  .ws-description{
+    color: rgba(147, 147, 147, 1);
+    font-family: "Adobe 宋体 Std L";
+    font-size: 13px;
+    padding: 5px 10px 5px 10px;
+  }
+  .foot1{
+    font-size: 17px;
+    line-height: 42px;
+    font-weight: 100;
+    background-color: rgba(248, 102, 79, 1);
+    color: #ffffff;
+  }
+  .foot4{
+    font-size: 17px;
+    line-height: 42px;
+    background-color: rgba(248, 102, 79, 1);
+    color: #ffffff;
+    font-weight: 100;
+    margin-left: 1px;
+  }
+  .foot2{
+    font-size: 8px;
+    color: rgba(147, 147, 147, 1);
+  }
+  .col{
+    padding: 0;
+  }
+  .foot3{
+    font-size: 26px;
+  }
+  .goods-title{
+    color: #333333;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 17px;
+    margin-left: 15px;
+  }
+  .goods-price{
+    color: #F15A4A;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 15px;
+  }
+  .goods-sales{
+    color: rgba(248, 102, 79, 1);
+    font-family: "Adobe 宋体 Std L";
+    font-size: 10px;
+  }
+  .goods-heart{
+    color: #F4333C;
+    font-size: 1.3em;
+  }
+  .goods-carriage{
+    color: rgba(147, 147, 147, 1);
+    font-family: "Adobe 宋体 Std L";
+    font-size: 13px;
+  }
+  #goodsImg{
+    position:fixed;
+    border-radius: 50%;
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255,.7);
+    width: 60%;
+    height: 150px;
+    top: auto;
+    animation:positionX cubic-bezier(.2,.93,.46,.84) 1s,positionY cubic-bezier(1,.07,.96,.85) 1s;
+    -webkit-animation:positionX cubic-bezier(.2,.93,.46,.84) 1s,positionY cubic-bezier(1,.07,.96,.85) 1s;/* Safari and Chrome */
+  }
+
+  @keyframes positionX
+  {
+    0%   {left:70px;}
+    100% {left:10px;}
+  }
+  @keyframes positionY
+  {
+    0%   { top:80px; width:70%;height: 190px;opacity: 0.4}
+    95% {top:95%; width: 10%;height: 40px;opacity: 0.5}
+    100% {top:95%; width: 10%;height: 40px;opacity:0.2}
+  }
+}

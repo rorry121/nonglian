@@ -1,0 +1,60 @@
+<!--
+  Generated template for the WesayPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar>
+  <ion-row>
+    <ion-col col-10 offset-1>
+
+        <ion-title>
+          Wesay
+        </ion-title>
+
+    </ion-col>
+    <ion-col col-1>
+      <ion-icon name="md-add" class="tubiaotoubu1" (click)="gotoHaveasayPage()" ></ion-icon>
+    </ion-col>
+  </ion-row>
+
+    <ion-row>
+      <ion-col *ngFor="let ch of ch1"
+               (click)="jiazaibybanner(ch.type)"
+               class="banner"
+               [class.change]="ch.type === selectedType">
+        {{ch.title}}
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let item of wesays">
+    <ion-row>
+      <ion-col col-auto>
+        <img class="ws-touxiang" src="{{item.owner.touxiang.url|| 'assets/img/default.jpg'}}">
+      </ion-col>
+      <ion-col col-5>
+        <p class="ws-name">{{item.owner.username}}</p>
+        <p class="ws-time">日期:{{item.createdAt | date:'yyyy/MM/dd HH:mm'}}</p>
+      </ion-col>
+      <ion-col col-1 offset-4>
+        <ion-icon name="add" class="following">关注</ion-icon>
+      </ion-col>
+    </ion-row>
+    <img class="picture" src="{{item.image.url || 'assets/img/logo.png'}}">
+    <p class="ws-description"><ion-icon name="ios-megaphone-outline" icon-only></ion-icon>    {{item.description}}</p>
+    <ion-row class="ws-footer">
+      <ion-col *ngFor="let i of foot" class="ws-footericon" (click)="i.fnc(item.geoPoint)">
+        <ion-icon name="{{i.iconname}}"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

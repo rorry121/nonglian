@@ -1,0 +1,24 @@
+page-show-map {
+  .map_container {
+    width: 100%;
+    height: 100%;
+  }
+  #panel {
+    position: absolute;
+    background-color: white;
+    max-height: 30%;
+    overflow-y: auto;
+    bottom: 10px;
+    width: 100%;
+    border: solid 1px silver;
+  }
+  #panel1 {
+    position: absolute;
+    background-color: white;
+    max-height: 40%;
+    overflow-y: auto;
+    bottom: 10px;
+    width: 100%;
+    border: solid 1px silver;
+  }
+}

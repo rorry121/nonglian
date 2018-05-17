@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      购物车
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let item of dataList; let i= index"  no-margin>
+    <ion-item *ngIf="item.num!==0">
+    <ion-row >
+      <ion-col  col-5 (click)="gotoGoodsdetail(item.goods)">
+        <img [src]="item.goods.image?.url || 'assets/img/default.jpg'" width="100%">
+      </ion-col>
+      <ion-col  col-7>
+        <ion-row>
+          <p class="goods-title">{{item.goods.title}}</p>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p style="color:#777777;font-size: 10px">单位：{{item.goods.danwei}}</p>
+            <p class="goods-price"><ion-icon name="logo-yen" [ngStyle]="{'font-size': '10px'}"></ion-icon>{{item.goods.price|number: '1.2-2'}}</p>
+          </ion-col>
+        <ion-col text-end style="text-align:center" col-auto>
+          <ion-row>
+            <ion-icon name="ios-remove-circle-outline" icon-left  [ngStyle]="{'color':(item.num&&item.num ==1) ? '#999999' : '#f12c12' }" style="font-size: 25px;line-height: 52px" (click)="changeBuyNum(false,item,i)" ></ion-icon>
+            <div #ionInput>
+            <ion-item no-padding no- style="width: 2em" class="aaaaa">
+              <ion-input   type="tel" maxLength="2" [(ngModel)]="item.num" (ionFocus)="focusOnInput($event,i)" (ionChange)="countToalMoney(i)" (ionBlur)="lose(i)" style="font-size: 16px;text-align: center;color: #555555;width: 35px;border:0;" text-center no-margin no-padding="" readonly></ion-input>
+            </ion-item>
+            </div>
+            <ion-icon name="ios-add-circle-outline" icon-right  style="font-size: 25px;color: #f12c12;line-height: 52px"(click)="changeBuyNum(true,item,i)"></ion-icon>
+          </ion-row>
+
+        </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer style="background-color: #f8f8f8">
+  <ion-row align-items-center>
+    <ion-col col-auto style="color: #333333;font-size: 16px" ><ion-icon name="ios-checkmark-circle-outline"></ion-icon>全选</ion-col>
+    <ion-col col-auto style="font-size: 10px; color: #555555">合计：</ion-col>
+    <ion-col col-auto class="goods-price" ><ion-icon name="logo-yen" [ngStyle]="{'font-size': '10px'}"></ion-icon>{{totalMoney | number:'1.2-2'}}</ion-col>
+    <ion-col>
+      <ion-buttons end>
+        <button ion-button round small style="background-color: #e13838;color: #ffffff;padding: 5px 10px"  (click)="goToConfirm()">去结算({{totalCartListNum}})</button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
