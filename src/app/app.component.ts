@@ -8,7 +8,8 @@ import {BackgroundMode} from "@ionic-native/background-mode";
 import {CommonProvider} from "../providers/common/common";
 import {NativeProvider} from "../providers/native/native";
 import {HttpProvider} from "../providers/http/http";
-
+import {JpushProvider} from "../providers/jpush/jpush";
+import {StorageProvider} from "../providers/storage/storage";
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,6 +17,7 @@ export class MyApp {
   @ViewChild('rootNav') nav: Nav;
   rootPage:any = TabsPage;
   backButtonPressedOnceToExit=false;
+  userInfo:any={};
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
@@ -25,15 +27,22 @@ export class MyApp {
               public commonProvider: CommonProvider,
               public toastCtrl: ToastController,
               public nativeProvider:NativeProvider,
-              public httpProvider:HttpProvider
-
+              public httpProvider:HttpProvider,
+              public jpushProvider:JpushProvider,
+              public storageProvider:StorageProvider,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.httpProvider.detectionUpgrade();
+      this.nativeProvider.assertLocationAuthorization();
+      this.userInfo=this.storageProvider.read('userInfo');
+      console.log('userInfo:',this.userInfo);
+      if(this.userInfo&&this.userInfo.objectId){
+        this.jpushProvider.changeAlias(this.userInfo.objectId);
+      }
+      this.jpushProvider.jPushSet();
       this.assertNetwork();
       // this.httpProvider.login(body)
       this.registerBackButtonAction();

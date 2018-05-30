@@ -21,15 +21,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding style="opacity: 0.2">
   <img [src]="imageBase64||'assets/img/logo.png'" width="100%" [hidden]="isimage" style="margin-top: 50px">
   <h5 [hidden]="!isimage">选择一张图片哦</h5>
   <div padding-top>
-    <button ion-button block color="light" (click)="getPicture(0)">从相册选一张</button>
+    <button ion-button block color="light" (click)="getPicture(0)">从图库选取图片</button>
   </div>
-  <div padding-top>
-    <button ion-button block color="light" (click)="getPicture(1)">拍一张照片</button>
-  </div>
+
   <form #loginform="ngForm" (ngSubmit)="onSubmit(loginform)">
     <ion-list>
       <ion-item>

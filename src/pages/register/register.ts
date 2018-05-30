@@ -4,6 +4,7 @@ import {HttpProvider} from "../../providers/http/http";
 import {CommonProvider} from "../../providers/common/common";
 import {MinePage} from "../mine/mine";
 import {StorageProvider} from "../../providers/storage/storage";
+import {JpushProvider} from "../../providers/jpush/jpush";
 
 /**
  * Generated class for the RegisterPage page.
@@ -29,6 +30,7 @@ export class RegisterPage {
               public httpProvider:HttpProvider,
               public commonProvider:CommonProvider,
               public storageProvider:StorageProvider,
+              public jpushProvider: JpushProvider
   ) {
   }
 
@@ -55,6 +57,9 @@ export class RegisterPage {
     this.httpProvider.login(f).subscribe(data=>{
       this.storageProvider.write('session_token', data.sessionToken);
       this.storageProvider.write('userInfo', data);
+      this.jpushProvider.jPushSet();
+      let userid=data.objectId;
+      this.jpushProvider.changeAlias(userid);
       this.navCtrl.setRoot(MinePage,data)
     },err=>{
       this.commonProvider.showToast(err,'bottom',3000);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {User, WesayType} from "./wesay-type";
 import {HttpProvider} from "../../providers/http/http";
 import {HaveasayPage} from "./haveasay/haveasay";
@@ -7,6 +7,7 @@ import {LoginPage} from "../login/login";
 import {CommonProvider} from "../../providers/common/common";
 import {ShowMapPage} from "../show-map/show-map";
 import {FooterInputPage} from "../footer-input/footer-input";
+import {ChatPage} from "../chat/chat";
 
 /**
  * Generated class for the WesayPage page.
@@ -35,10 +36,8 @@ export class WesayPage {
   wesayType: number=0;
   selectedType: number=0;
   ch1 = [
-    {title: "乡味",type:0},
-    {title: "村游",type:1},
-    {title: "评评特产",type:2},
-    {title: "看看家乡",type:3}
+    {title: "动态",type:0},
+    {title: "消息",type:1}
   ];
   constructor(
     public navCtrl: NavController,
@@ -57,12 +56,12 @@ export class WesayPage {
       this.selectedType=0;
     }
     console.log('wesayType',this.wesayType)
-    this.jiazai(this.pageIndex,this.wesayType);
+    this.jiazai(this.pageIndex);
     console.log('this.wesays',this.wesays);
   }
   doInfinite(infiniteScroll) {
     this.pageIndex++;
-    this.jiazai(this.pageIndex,this.wesayType);
+    this.jiazai(this.pageIndex);
     setTimeout(() => {
       infiniteScroll.complete();
     },700);
@@ -80,11 +79,12 @@ export class WesayPage {
     this.selectedType=selectedIndex;
     this.wesayType=selectedIndex;
     console.log("分类：",this.wesayType)
-    this.reload();
+    // this.reload();
   }
-  jiazai(pageIndex,wesayType){
+  jiazai(pageIndex){
     const startNum = pageIndex * 5 - 5 ;
-    let searchBy='?where={"type":{"$lte":'+wesayType+',"$gte":'+wesayType+'}}';
+    // let searchBy='?where={"type":{"$lte":'+wesayType+',"$gte":'+wesayType+'}}';
+    let searchBy='?where={}';
     let url='classes/wesay/'+searchBy+'&limit=5&skip=' + startNum+'&order=-createdAt&include=owner';
 
     this.httpProvider.get(url).subscribe(data=>{
@@ -103,10 +103,14 @@ export class WesayPage {
   reload(){
     this.pageIndex=1;
     this.wesays=[];
-    this.jiazai(this.pageIndex,this.wesayType);
+    this.jiazai(this.pageIndex);
   }
   gotologin(){
     this.navCtrl.push(LoginPage);
+  }
+  goToChat(toUser){
+    console.log(toUser);
+    this.navCtrl.push(ChatPage,{toUserId:toUser.objectId,toUserName:toUser.username,toUserAvatar:toUser.touxiang.url});
   }
   gotoHaveasayPage(){
     // var token = localStorage.getItem('session_token');
@@ -114,7 +118,7 @@ export class WesayPage {
     //   this.gotologin();
     // }
     // if (token) {
-      this.navCtrl.push( HaveasayPage );
+      this.navCtrl.push( HaveasayPage);
     // }
   }
   goToMap(item){
@@ -127,5 +131,7 @@ export class WesayPage {
       let popover = this.popoverCtrl.create(FooterInputPage,{});
       popover.present();
   }
-
+  getKeys(item) {
+    return Object.keys(item);
+  }
 }

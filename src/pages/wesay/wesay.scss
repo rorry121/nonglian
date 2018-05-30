@@ -39,8 +39,14 @@ page-wesay {
     box-shadow: 0 1px 2px rgba(147, 147, 147, 0.2);
   }
   .picture{
-    width: 100%;
-    height: 180px;
+    //width: 100%;
+    //height: 180px;
+    object-fit: cover;
+    background-size: cover!important;
+    background-position: 50% 50%!important;
+    position: relative!important;
+    width:100%!important;
+    padding-top:100%!important;
   }
   .ws-touxiang{
     width: 36px;
@@ -63,15 +69,17 @@ page-wesay {
     padding: 1px 2px 2px 5px;
   }
   .ws-description{
-    background-color: #F2F2F2;
+    //background-color: #F2F2F2;
     color: #333333;
     font-family: "Adobe 宋体 Std L";
     font-size: 13px;
     padding: 5px 10px 5px 10px;
+    margin-right: 10px;
   }
   .ws-footer{
     height: 35px;
     line-height: 35px;
+    margin-top: 5px;
   }
   .ws-footericon:hover{
     color: rgba(128, 167, 48, 1);

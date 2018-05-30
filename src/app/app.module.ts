@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -53,6 +53,14 @@ import {FooterInputPage} from "../pages/footer-input/footer-input";
 import {FooterInputPageModule} from "../pages/footer-input/footer-input.module";
 import {EmojiPickerComponentModule} from "../pages/emoji-picker/emoji-picker.module";
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { JpushProvider } from '../providers/jpush/jpush';
+import {JPush} from "@jiguang-ionic/jpush";
+import {IonJPushModule} from "ionic2-jpush";
+import {ChatPage} from "../pages/chat/chat";
+import {ChatPageModule} from "../pages/chat/chat.module";
+import {ImagePicker} from "@ionic-native/image-picker";
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -84,7 +92,9 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     CunyouTuijianPageModule,
     CunyouDetailsPageModule,
     FooterInputPageModule,
-    EmojiPickerComponentModule
+    EmojiPickerComponentModule,
+    IonJPushModule,
+    ChatPageModule
 
   ],
   bootstrap: [IonicApp],
@@ -102,7 +112,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     CunyouMorePage,
     CunyouTuijianPage,
     CunyouDetailsPage,
-    FooterInputPage
+    FooterInputPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
@@ -115,7 +126,8 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     FileTransfer,FileTransferObject,
     File,
     StorageProvider,
-    BackgroundMode,AppVersion,AppMinimize,Network,BarcodeScanner,Geolocation,FileOpener,CallNumber,Diagnostic
+    BackgroundMode,AppVersion,AppMinimize,Network,BarcodeScanner,Geolocation,FileOpener,CallNumber,Diagnostic,
+    JpushProvider,JPush,ImagePicker
   ]
 })
 export class AppModule {}

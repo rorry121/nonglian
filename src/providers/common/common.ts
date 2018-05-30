@@ -5,7 +5,6 @@ import {AlertController, LoadingController, ToastController} from "ionic-angular
 import {StorageProvider} from "../storage/storage";
 import {AppVersion} from "@ionic-native/app-version";
 import { Geolocation } from '@ionic-native/geolocation';
-import {HttpProvider} from "../http/http";
 /*
   Generated class for the CommonProvider provider.
 

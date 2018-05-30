@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {GoodsListPage} from "../goods/goods-list/goods-list";
 import {NativeProvider} from "../../providers/native/native";
 import {CommonProvider} from "../../providers/common/common";
 import {CunyouFujinPage} from "./cunyou-fujin/cunyou-fujin";
@@ -72,7 +71,7 @@ export class CunyouPage {
         // let address = result.regeocode.formattedAddress; //返回地址描述
         this.district=result.regeocode.addressComponent.district;
         document.getElementById("district").innerHTML = this.district;
-        console.log(this.district);
+        console.log('district:',this.district);
       }
     });
   }

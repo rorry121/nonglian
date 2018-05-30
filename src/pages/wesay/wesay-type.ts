@@ -3,13 +3,12 @@ export class WesayType{
   owner: User;
   createdAt: string;
   updateAt: string;
-  comment: Comment[];
-  image: Image;
+  imgArray: string[];
   type: number;
   description: string;
-  touxiang: string;
   username: string;
-  geoPoint:GeoPoint
+  geoPoint:GeoPoint;
+  address:string;
 }
 export class Wesaycommenttype{
   wesay: Wesay;

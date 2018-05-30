@@ -3,7 +3,6 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import {ToastController, Platform, AlertController} from "ionic-angular";
-import {AppMinimize} from "@ionic-native/app-minimize";
 import {Network} from "@ionic-native/network";
 import {Observable} from "rxjs";
 import {CommonProvider} from "../common/common";
@@ -23,7 +22,6 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 declare var LocationPlugin;
-declare var AMapNavigation;
 
 @Injectable()
 export class NativeProvider {
@@ -32,7 +30,6 @@ export class NativeProvider {
               private camera: Camera,
               private toastCtrl:ToastController,
               private alertCtrl:AlertController,
-              private appMinimize: AppMinimize,
               private network: Network,
               public platform: Platform,
               private barcodeScanner: BarcodeScanner,
@@ -65,8 +62,8 @@ export class NativeProvider {
     let ops: CameraOptions = Object.assign({
       sourceType: this.camera.PictureSourceType.CAMERA,//图片来源,CAMERA:拍照,PHOTOLIBRARY:相册
       destinationType: this.camera.DestinationType.FILE_URI,//默认返回base64字符串,DATA_URL:base64   FILE_URI:图片路径
-      quality: 50,//图像质量，范围为0 - 100
-      allowEdit: true,//选择图片前是否允许编辑
+      quality: 100,//图像质量，范围为0 - 100
+      // allowEdit: true,//选择图片前是否允许编辑
       encodingType: this.camera.EncodingType.JPEG,
       // targetWidth: 400,//缩放图像的宽度（像素）
       // targetHeight: 400,//缩放图像的高度（像素）
@@ -363,7 +360,7 @@ export class NativeProvider {
   })();
 
   // 检测app是否有定位权限,如果没有权限则会请求权限
-  private assertLocationAuthorization = (() => {
+  public assertLocationAuthorization = (() => {
     let locationAuthorization = false;
     return () => {
       return Observable.create(observer => {

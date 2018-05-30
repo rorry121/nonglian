@@ -5,8 +5,8 @@ import {HttpProvider} from "../../providers/http/http";
 import {StorageProvider} from "../../providers/storage/storage";
 import {RegisterPage} from "../register/register";
 import {CommonProvider} from "../../providers/common/common";
-import {Md5} from "ts-md5/dist/md5";
-
+// import {Md5} from "ts-md5/dist/md5";
+import {JpushProvider} from "../../providers/jpush/jpush";
 
 /**
  * Generated class for the LoginPage page.
@@ -41,7 +41,8 @@ export class LoginPage {
               public navParams: NavParams,
               public httpProvider:HttpProvider,
               public storageProvider:StorageProvider,
-              public commonProvider:CommonProvider
+              public commonProvider:CommonProvider,
+              private jpushProvider: JpushProvider
   ) {
 
   }
@@ -56,10 +57,13 @@ export class LoginPage {
     console.log(this.formModule.value.data);
     let body={
       username:this.formModule.value.data.username,
-      password:Md5.hashStr(this.formModule.value.data.password)
+      password:this.formModule.value.data.password
     }
     this.httpProvider.login(body).subscribe(data=>{
       // this.storeToken(data.json());this.userinfo=data.json();this.backto();
+      this.jpushProvider.jPushSet();
+      let userid=data.objectId;
+      this.jpushProvider.changeAlias(userid);
       this.storageProvider.write('userInfo', data);
       this.backto();
       console.log(data);

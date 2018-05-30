@@ -17,8 +17,6 @@ import {WaitforgoodscommentPageModule} from "./waitforgoodscomment/waitforgoodsc
 import {WaitforgoodscommentPage} from "./waitforgoodscomment/waitforgoodscomment";
 import {UserCenterPage} from "./user-center/user-center";
 import {ComponentsModule} from "../../components/components.module";
-
-import {ImgSlidesPage} from "../img-slides/img-slides";
 import {ModifyPwdPage} from "./user-center/modify-pwd/modify-pwd";
 import {ModifyAddressPage} from "./user-center/modify-address/modify-address";
 import {AddressListPage} from "./user-center/address-list/address-list";

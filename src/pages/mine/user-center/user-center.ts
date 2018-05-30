@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController, Events} from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {StorageProvider} from "../../../providers/storage/storage";
 import {HttpProvider} from "../../../providers/http/http";
 import {NativeProvider} from "../../../providers/native/native";

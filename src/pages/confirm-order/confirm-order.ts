@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {CommonProvider} from "../../providers/common/common";
 import {PaymentPage} from "../payment/payment";
-import {LoginPage} from "../login/login";
 
 /**
  * Generated class for the ConfirmOrderPage page.

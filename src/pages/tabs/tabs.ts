@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import { HomePage } from '../home/home';
 import {WesayPage} from "../wesay/wesay";
 import {GoodsListPage} from "../goods/goods-list/goods-list";
 import {MinePage} from "../mine/mine";

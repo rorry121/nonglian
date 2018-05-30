@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import {ChatPage} from "../chat/chat";
 
 /**
  * Generated class for the PaymentPage page.
@@ -41,5 +42,8 @@ export class PaymentPage {
 
   close() {
     this.viewCtrl.dismiss();
+  }
+  dosomething(){
+     this.navCtrl.push(ChatPage,{toUserId:'B3DaSEIa4M',toUserName:'wwwwww',toUserAvatar:'http://www.rorry.cn/linker/assets/img/default.png'});
   }
 }

@@ -19,12 +19,18 @@
     </ion-col>
   </ion-row>
 
-    <ion-row>
-      <ion-col *ngFor="let ch of ch1"
-               (click)="jiazaibybanner(ch.type)"
+    <ion-row justify-content-center>
+      <ion-col col-2
+               (click)="jiazaibybanner(0)"
                class="banner"
-               [class.change]="ch.type === selectedType">
-        {{ch.title}}
+               [class.change]="ch1[0].type === selectedType">
+        {{ch1[0].title}}
+      </ion-col>
+      <ion-col col-2 offset-1
+               (click)="jiazaibybanner(1)"
+               class="banner"
+               [class.change]="ch1[1].type === selectedType">
+        {{ch1[1].title}}
       </ion-col>
     </ion-row>
   </ion-navbar>
@@ -33,21 +39,49 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-card *ngFor="let item of wesays">
+  <ion-card *ngFor="let item of wesays" style="padding: 0 5px 0 5px">
     <ion-row>
       <ion-col col-auto>
-        <img class="ws-touxiang" src="{{item.owner.touxiang.url|| 'assets/img/default.jpg'}}">
+        <img class="ws-touxiang" src="{{item.owner?.touxiang?.url|| 'assets/img/default.jpg'}}" (click)="goToChat(item.owner)">
       </ion-col>
       <ion-col col-5>
-        <p class="ws-name">{{item.owner.username}}</p>
+        <p class="ws-name">{{item.owner?.username}}</p>
         <p class="ws-time">日期:{{item.createdAt | date:'yyyy/MM/dd HH:mm'}}</p>
       </ion-col>
       <ion-col col-1 offset-4>
         <ion-icon name="add" class="following">关注</ion-icon>
       </ion-col>
+      <p class="ws-description">{{item.description}}</p>
     </ion-row>
-    <img class="picture" src="{{item.image.url || 'assets/img/logo.png'}}">
-    <p class="ws-description"><ion-icon name="ios-megaphone-outline" icon-only></ion-icon>    {{item.description}}</p>
+
+    <!--<ion-row *ngIf="item.imgArray.length===2">-->
+      <!--<ion-col  col-5 style="padding: 2px 2px">-->
+        <!--<img-lazy-load [src]="item.imgArray[0]"></img-lazy-load>-->
+      <!--</ion-col>-->
+      <!--<ion-col  col-5 style="padding: 2px 2px">-->
+        <!--<img-lazy-load [src]="item.imgArray[1]"></img-lazy-load>-->
+      <!--</ion-col>-->
+    <!--</ion-row>-->
+    <ion-row *ngIf="item.imgArray.length===1">
+      <ion-col col-4>
+        <img-lazy-load [src]="item.imgArray[0]"></img-lazy-load>
+      </ion-col>
+    </ion-row>
+      <ion-row *ngIf="item.imgArray.length>1" >
+        <ion-col  col-4 style="padding: 2px 2px" *ngFor="let key of item.imgArray">
+        <div class="picture"[ngStyle]="{background: 'url('+key+')'}" > </div>
+        </ion-col>
+      </ion-row>
+
+    <ion-row style="color: #999999;font-size: 12px; margin: 3% 0 3% 1%;">
+      <ion-col col-auto>
+        <ion-icon name="ios-pin-outline"></ion-icon>
+      </ion-col>
+      <ion-col>
+        {{item.address}}
+      </ion-col>
+    </ion-row>
+    <div style="border:0.4px solid #EEEEEE;margin: auto;width: 95%"></div>
     <ion-row class="ws-footer">
       <ion-col *ngFor="let i of foot" class="ws-footericon" (click)="i.fnc(item.geoPoint)">
         <ion-icon name="{{i.iconname}}"></ion-icon>

@@ -22,6 +22,18 @@ export class ImgLazyLoadComponent {
     img.onload = () => {
       //这里为了达到演示效果给了两秒的延迟，实际使用中不需要延迟
         this.default = this.src;
+        if(img.width>img.height){
+          img.width=window.screen.width*0.68;
+          // document.getElementsByClassName('onlyone')[0].style.minWidth='60%';
+          console.log(img.width)
+
+        }
+      if(img.height>img.width){
+        img.width=window.screen.width*0.33;
+        // document.getElementsByClassName('onlyone')[0].style.minWidth='60%';
+        console.log(img.width)
+      }
+
     }
   }
 }

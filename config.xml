@@ -20,6 +20,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="loadUrlTimeoutValue" value="60000" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -99,4 +100,9 @@
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="com.kit.cordova.amaplocation" spec="git+https://github.com/yanxiaojun617/com.kit.cordova.amaplocation.git" />
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.6" />
+    <plugin name="jpush-phonegap-plugin" spec="^3.3.2">
+        <variable name="APP_KEY" value="ddcbde409b6b5fb6e9489380" />
+    </plugin>
+    <plugin name="cordova-plugin-jcore" spec="^1.2.0" />
+    <plugin name="cordova-plugin-image-picker" spec="git+https://github.com/Findiglay/cordova-imagePicker.git" />
 </widget>

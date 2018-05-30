@@ -1,6 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, TextInput} from 'ionic-angular';
 import {NativeProvider} from "../../providers/native/native";
+import {HttpProvider} from "../../providers/http/http";
+import {JpushProvider} from "../../providers/jpush/jpush";
+
 
 /**
  * Generated class for the FooterInputPage page.
@@ -20,7 +23,10 @@ export class FooterInputPage {
   @ViewChild('chat_input') messageInput: TextInput;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public nativeProvider:NativeProvider
+              public nativeProvider:NativeProvider,
+              public httpProvider:HttpProvider,
+              public jpushProvider:JpushProvider
+
 
   ) {
   }
@@ -35,10 +41,21 @@ export class FooterInputPage {
     }
   }
   sendMsg(){
-    this.nativeProvider.getLocation().subscribe(data => {
-      alert(JSON.stringify(data))
-    }, msg => {
-      alert(JSON.stringify(msg))
-    })
+    // this.nativeProvider.getLocation().subscribe(data => {
+    //   alert(JSON.stringify(data))
+    // }, msg => {
+    //   alert(JSON.stringify(msg))
+    // })
+    // let body =[
+    //   { name: 'userid', value: 'NBDZLbMOSi' },
+    //   { name: 'toUserids', value: 'tdwu3W9CDk' },
+    //   { name: 'msgContent', value: this.editorMsg }
+    // ];
+    // this.httpProvider.commonPost('http://123.207.14.157:3200/jpush',body).subscribe(data => {
+    //     console.log('data:',data);
+    // });
+
+    this.jpushProvider.ceshi();
   }
+
 }

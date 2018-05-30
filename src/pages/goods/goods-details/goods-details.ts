@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Events, IonicPage, ModalController, NavController, NavParams, PopoverController} from 'ionic-angular';
+import {Events, IonicPage,NavController, NavParams, PopoverController} from 'ionic-angular';
 import {Goods} from "../goods";
 import {AddCartPage} from "../add-cart/add-cart";
 import {ShoppingCartPage} from "../../mine/shoppingcart/shoppingcart";

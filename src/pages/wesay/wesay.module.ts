@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { WesayPage } from './wesay';
 import {HaveasayPageModule} from "./haveasay/haveasay.module";
+import {ComponentsModule} from "../../components/components.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import {HaveasayPageModule} from "./haveasay/haveasay.module";
   ],
   imports: [
     IonicPageModule.forChild(WesayPage),
-    HaveasayPageModule
+    HaveasayPageModule,
+    ComponentsModule
   ],
 })
 export class WesayPageModule {}

@@ -1,10 +1,6 @@
-/**
- * Created by sc on 2017/5/14.
- */
 import {Component, QueryList, ViewChild, ViewChildren, ElementRef} from "@angular/core";
-import {AlertController, Content, NavController, NavParams, TextInput} from "ionic-angular";
+import {AlertController, Content, NavController, NavParams} from "ionic-angular";
 import {HttpProvider} from "../../../providers/http/http";
-import {StorageProvider} from "../../../providers/storage/storage";
 import {CommonProvider} from "../../../providers/common/common";
 import {GoodsDetailsPage} from "../../goods/goods-details/goods-details";
 import {ConfirmOrderPage} from "../../confirm-order/confirm-order";
@@ -101,7 +97,6 @@ export class ShoppingCartPage {
     //   this.dataList[i].num=0;
     // }
     this.totalMoney=0;
-    let countStr='0';
     let countNum=0;
     for(let i=0;i<this.dataList.length;i++){
       this.totalMoney=this.totalMoney+this.dataList[i].num*this.dataList[i].goods.price

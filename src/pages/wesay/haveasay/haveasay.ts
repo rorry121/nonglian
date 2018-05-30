@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {NativeProvider} from "../../../providers/native/native";
 import {HttpProvider} from "../../../providers/http/http";
 import {StorageProvider} from "../../../providers/storage/storage";
 import {WesayPage} from "../wesay";
 import {CommonProvider} from "../../../providers/common/common";
+import {ImagePicker} from "@ionic-native/image-picker";
 
 /**
  * Generated class for the HaveasayPage page.
@@ -21,7 +22,6 @@ declare var AMap;
 export class HaveasayPage {
   locationAttr:any={};
   address:any={};
-  lnglatXY=[106.57728, 29.494665];
   imageBase64:string='';
   userobjectId: string;
   user:any;
@@ -29,12 +29,16 @@ export class HaveasayPage {
   res1: string;
   res2: any;
   objpicname: string;
+  imgArray=[];
+  localImg=[];
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public nativeProvider:NativeProvider,
               public httpProvider:HttpProvider,
               public storageProvider:StorageProvider,
-              public commonProvider:CommonProvider
+              public commonProvider:CommonProvider,
+              private imagePicker: ImagePicker,
+              private loadingCtrl: LoadingController,
   ) {
     let user = storageProvider.read('userInfo');
     console.log(user);
@@ -52,16 +56,20 @@ export class HaveasayPage {
   }
     getPicture(type) {//1拍照,0从图库选择
       let options = {
-        targetWidth: 540,
-        targetHeight: 270
       };
       if (type == 1) {
         this.nativeProvider.getPictureByCamera(options).then(imageBase64 => {
           this.getPictureSuccess(imageBase64);
         });
       } else {
-        this.nativeProvider.getPictureByPhotoLibrary(options).then(imageBase64 => {
-          this.getPictureSuccess(imageBase64);
+        // this.nativeProvider.getPictureByPhotoLibrary(options).then(imageBase64 => {
+        //   this.getPictureSuccess(imageBase64);
+        // });
+        let imgArray1=[];
+        this.imagePicker.getPictures({}).then((results) => {
+          this.localImg=results;
+        }).catch(err => {
+          //console.log('CommonService.getPackageName:' + err);
         });
       }
     }
@@ -71,55 +79,58 @@ export class HaveasayPage {
       this.imageBase64 = <string>imageBase64;
     }
     onSubmit(f){
+      let options = {
+        spinner: 'circles',
+        dismissOnPageChange: true,
+      };
+
+      let loading=this.loadingCtrl.create(options);
+      loading.present();
       let userId=this.commonProvider.getLocalUserId();
+      let imgArray1=[];
       if(userId){
-        this.httpProvider.uploadFile(this.imageBase64,'wesayImage').then(
-          data=>{
-            console.log("....data:", data);
-            this.res1 = data.response;
-            console.log("....this.res1:", this.res1);
-            this.res2 = JSON.parse(this.res1);
-            console.log("....this.res2:", this.res2);
-            this.objpicname = this.res2.name;
-            this.setpic(f.value.description,f.value.gaming);
-          }
-        )
+        for (let i = 0; i < this.localImg.length; i++) {
+          console.log('Image URI: ' + this.localImg[i]);
+          this.httpProvider.uploadFile(this.localImg[i],'wesayImage').then(
+            data=>{
+              let res3 = data.response;
+              let res4 = JSON.parse(res3);
+              console.log("res4.url:", res4.url);
+              imgArray1.push(res4.url);
+              if(imgArray1.length==this.localImg.length){
+                this.nativeProvider.getLocation().subscribe(data=>{
+                  // this.lnglatXY[0]=this.locationAttr.coords.longitude;
+                  // this.lnglatXY[1]=this.locationAttr.coords.latitude;
+                  let geoPoint:any={
+                    "__type": "GeoPoint",
+                    "latitude": data.lat,
+                    "longitude": data.lng
+                  }
+                  let lnglatXY=[];
+                  lnglatXY[0]=data.lng;
+                  lnglatXY[1]=data.lat;
+                  let address=this.getAddress(lnglatXY);
+                  console.log('执行生成wesay操作');
+                  this.httpProvider.havewesayNew(this.userobjectId,imgArray1,f.value.gaming,f.value.description,geoPoint,address).subscribe(data=>{
+                    console.log(data);
+                    console.log(imgArray1);
+                    loading.dismiss();
+                    this.gotoWesay(0);
+                    // data => this.navCtrl.push(AboutPage)
+                  },err=>{
+                    this.commonProvider.showToast(err,'bottom',3000);
+                    loading.dismiss();
+                  });
+
+                });
+              }
+            }
+          )
+        }
       }else{
         this.commonProvider.showToast('亲，只有登录了才可发表哦','bottom',2000);
       }
-      // if (this.isChange) {
-      //   console.log(this.imageBase64);//这是头像数据.
-      //   this.nativeService.showLoading('正在上传....');
-      //
-      //   // this.viewCtrl.dismiss({avatarPath: this.avatarPath});//这里可以把头像传出去.
-      //
-      // } else {
-      //   // this.dismiss();
-      // }
     }
-  setpic(description,gaming){
-      let loading=this.commonProvider.showLoading();
-      this.nativeProvider.getLocation().subscribe(data=>{
-        // this.lnglatXY[0]=this.locationAttr.coords.longitude;
-        // this.lnglatXY[1]=this.locationAttr.coords.latitude;
-        let geoPoint:any={
-          "__type": "GeoPoint",
-          "latitude": data.lat,
-          "longitude": data.lng
-        }
-        let address=this.getAddress(this.lnglatXY);
-        this.httpProvider.havewesay(this.userobjectId,this.objpicname,gaming,description,geoPoint,address).subscribe(data=>{
-          console.log(data);
-          console.log(this.userobjectId);console.log(this.objpicname);
-          this.gotoWesay(gaming);
-          loading.dismiss();
-          // data => this.navCtrl.push(AboutPage)
-        },err=>{
-          loading.dismiss();
-          this.commonProvider.showToast(err,'bottom',3000)
-        });
-      })
-  }
   getAddress(lnglatXY){
     let lnglat=lnglatXY;
     let geocoder = new AMap.Geocoder({
@@ -129,7 +140,12 @@ export class HaveasayPage {
     geocoder.getAddress(lnglat,(status, result)=>{
       if (status === 'complete' && result.info === 'OK') {
         console.log(result);
-        let address = result.regeocode.formattedAddress; //返回地址描述
+        let info=result.regeocode.addressComponent;
+        let address = info.city+'·'+info.district+'·'+info.township+'·'+info.street+info.streetNumber+result.regeocode.pois[0].name;
+        if(info.city==""){
+          address = info.province+'·'+info.district+'·'+info.township+'·'+info.street+info.streetNumber+result.regeocode.pois[0].name;
+        }
+        console.log(address);//返回地址描述
         return address;
       }else{
         return '';
@@ -138,5 +154,11 @@ export class HaveasayPage {
   }
   gotoWesay(gaming){
     this.navCtrl.setRoot(WesayPage,{gaming:gaming});
+  }
+  uploadImgArray(){
+    let imgArray1=[];
+    return new Promise((resolve) => {
+
+    });
   }
 }

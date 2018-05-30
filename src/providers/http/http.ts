@@ -5,8 +5,9 @@ import {AppConfig} from "../AppConfig";
 import {FileTransferObject, FileTransfer, FileUploadOptions} from "@ionic-native/file-transfer";
 import {Observable} from "rxjs";
 import {CommonProvider} from "../common/common";
-import {AlertController} from "ionic-angular";
+import {AlertController, Events} from "ionic-angular";
 import {NativeProvider} from "../native/native";
+import {ChatMessage} from "../../pages/chat/chat";
 
 /*
   Generated class for the HttpProvider provider.
@@ -26,7 +27,8 @@ export class HttpProvider {
               public alertCtrl:AlertController,
               private transfer: FileTransfer,
               public commonProvider:CommonProvider,
-              private nativeProvider:NativeProvider
+              private nativeProvider:NativeProvider,
+              private events: Events,
   ) {
 
     this.addHeader.append("X-Parse-Application-Id", this.XParseApplicationId);
@@ -81,6 +83,19 @@ export class HttpProvider {
 
     return this.http.post(`${this.ServiceUrl}/${url}`,body, {headers: this.addHeader}).map(res => {
       let result = res.json();
+      return result;
+    }).catch(this.handleError);;
+  }
+
+  /**
+   * post请求-
+   * @param url
+   * @param body
+   */
+  commonPost(url: string,body) {
+
+    return this.http.post(url,body).map(res => {
+      let result = res;
       return result;
     }).catch(this.handleError);;
   }
@@ -157,7 +172,23 @@ export class HttpProvider {
       console.log(body);
       return this.post(url,body).catch(this.handleError);
   }
-
+  havewesayNew(objectId,imgArray,type,description,geoPoint,address):Observable<Response>{
+    let url = '/classes/wesay/'
+    let body ={
+      "imgArray": imgArray,
+      "owner": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": objectId
+      },
+      "type": parseInt(type),
+      "description":description,
+      "geoPoint":geoPoint,
+      "address":address
+    };
+    console.log('havewesayNew:',body);
+    return this.post(url,body).catch(this.handleError);
+  }
   /**
    * 获取关系-
    * @param url   /classes/Goods
@@ -350,5 +381,70 @@ export class HttpProvider {
   checkversion(): Observable<any> {
     let url = "config"
     return this.get(url).catch(this.handleError);
+  }
+
+  sendMsg(userId,toUserId,message,username){
+    let url = '/classes/Message'
+    let body ={
+      "userId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": userId
+      },
+      "toUserId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": toUserId
+      },
+      "message":message,
+      "status":'pending',
+      "userName":username
+    };
+    return this.post(url,body).catch(this.handleError);
+  }
+
+  getMsg(userId,toUserId,limit,startNum):Observable<any>{
+    let url = '/classes/Message'
+    let body ={
+      "userId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": userId
+      },
+      "toUserId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": toUserId
+      }
+    };
+    let body1 ={
+      "userId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": toUserId
+      },
+      "toUserId": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": userId
+      }
+    };
+    url=url+'?where={"$or":['+JSON.stringify(body)+','+JSON.stringify(body1)+']}'+'&limit='+limit+'&skip='+startNum+'&order=-createdAt';
+    return this.get(url).catch(this.handleError);
+  }
+  ceshi(){
+    let mockMsg: ChatMessage = {
+      updatedAt: Date.now().toString(),
+      objectId: '',
+      userId: {objectId:'tdwu3W9CDk',className: "_User"},
+      toUserId: {objectId:'NBDZLbMOSi',className: "_User"},
+      message: '默认的消息',
+      status: 'pending',
+      userName:'luolei'
+    };
+    setTimeout(() => {
+      this.events.publish('chat:received', mockMsg, Date.now());
+      console.log('publish-chat:received');
+    }, Math.random() * 500)
   }
 }
